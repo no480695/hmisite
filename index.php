@@ -4,7 +4,7 @@ $ERA_ID = 6;
 
 //GET ALL TEH INFORMATION FROM DATABASE BASED ON ERA GIVEN ABOVE AND GET ARRAYS AND SUCH FOR EVENTS
 
-
+//Test of the git system
 
 /*
  HERE IS AN IDEA MAYBE FIX YOUR DATABASE?
@@ -157,7 +157,7 @@ mysql_select_db("hmi_site")or die( mysql_error());
   <div style="float:left">For the Paoli event registration, please follow the lonk t the right and read further instructions.</div><a href="/pages/paoli-registration.php" style="float:right;" class="btn btn-large">Paoli Registration Page</a>
 </div>
     <div class="container marketing">
-	
+
 	  <div class="featurette" style="padding-top:20px;">
         <!--<img class="featurette-image pull-right" src="../assets/img/examples/browser-icon-chrome.png">-->
         <h2 class="featurette-heading">Historical Military Impressions <span class="muted">"Proud to be American"</span></h2>
@@ -187,7 +187,7 @@ mysql_select_db("hmi_site")or die( mysql_error());
           <p><a class="btn" href="pages/era/civilwar.php">View details &raquo;</a></p>
         </div><!-- /.span4 -->
       </div><!-- /.row -->
-	  
+
 	  <div class="row" style="padding-top:30px;">
         <div class="span4">
           <img class="img" src="images/landing/1812_icon.png" width="100px">
@@ -212,10 +212,10 @@ mysql_select_db("hmi_site")or die( mysql_error());
       <hr class="featurette-divider">
 
       <!-- /END THE FEATURETTES -->
-	  
+
 
     </div><!-- /.container -->
-	
+
 	<footer class="footer">
 		<div class="container">
 			<p class="pull-right"><a href="#">Back to top</a></p>
