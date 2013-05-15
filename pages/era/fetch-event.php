@@ -1,9 +1,9 @@
 <?
 $id = $_POST['id'];
 
-$dbh=mysql_connect ("localhost", "hmisite", "beaver12")
+$dbh=mysql_connect ("localhost", "noffutt", "beaver12")
 or die ('I cannot connect to the database because: ' . mysql_error());
-mysql_select_db("hmisite_main")or die( mysql_error());
+mysql_select_db("hmi_site")or die( mysql_error());
 
 $get_event = mysql_query("SELECT start_date,end_date,name,description,location FROM event WHERE id = ".$id);
 
