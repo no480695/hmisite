@@ -31,7 +31,7 @@
 		$x = 0;
 		while ($i = mysql_fetch_array($all_events, MYSQL_ASSOC)) {
 
-			echo('what');
+			echo "what";
 
 			$date_time = explode(" ",$i['start_date']);
 			$date = $date_time[0];
