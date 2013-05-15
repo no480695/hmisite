@@ -154,7 +154,7 @@ mysql_select_db("hmi_site")or die( mysql_error());
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
     <div class="container alert alert-success" style="margin: 20px auto;width: 1120px;">
-  <div style="float:left">For the Paoli event registration, please follow the lonk t the right and read further instructions.</div><a href="/pages/paoli-registration.php" style="float:right;" class="btn btn-large">Paoli Registration Page</a>
+  <div style="float:left">For the Paoli event registration, please follow the link to the right and read further instructions.</div><a href="/pages/paoli-registration.php" style="float:right;" class="btn btn-large">Paoli Registration Page</a>
 </div>
     <div class="container marketing">
 
