@@ -340,7 +340,7 @@ background-image: -webkit-gradient(
 
 	<?
 
-	include("/pages/era/get-events.php");
+	include("get-events.php");
 
 	?>
 
