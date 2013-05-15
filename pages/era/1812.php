@@ -131,7 +131,11 @@ $COMMANDER_ID = $get[0];
 			<div class="controls">
 			<form name="pics_to_get" method="post" id="pics_to_get" action="/pages/process_pics.php" enctype="multipart/form-data">
 				<select id="event_select" name="event_select">
-			  <? while ($i = mysql_fetch_array($all_events, MYSQL_ASSOC)) { ?>
+			  <?
+
+			  	$all_events2 = mysql_query("SELECT id,start_date,end_date,name,description,all_day FROM event WHERE era_id = ".$ERA_ID);
+
+			  	while ($i = mysql_fetch_array($all_events2, MYSQL_ASSOC)) { ?>
 					<option value="<? echo $i['id']; ?>"><? echo $i['name']; ?></option>
 			  <? } ?>
 				</select>
