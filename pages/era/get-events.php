@@ -33,35 +33,17 @@
 		$x = 0;
 		while ($i = mysql_fetch_array($all_events, MYSQL_ASSOC)) {
 
-			echo "what";
+      $date = $i['start_date'];
+      $date_break = explode("-",$date);
+      $year = $date_break[0];
+      $month = ($date_break[1])-1;
+      $day = $date_break[2];
 
-      $date_time = explode(" ",$i['start_date']);
-      $date = $date_time[0];
-      $time = $date_time[1];
-      $date_break = explode("/",$date);
-      $time_break = explode(":",$time);
-      $year = $date_break[2];
-      $month = ($date_break[0])-1;
-      $day = $date_break[1];
-      $hour = $time_break[0];
-      $minute = $time_break[1];
-
-      $date_time2 = explode(" ",$i['end_date']);
-      $date2 = $date_time2[0];
-      $time2 = $date_time2[1];
-      $date_break2 = explode("/",$date2);
-      $time_break2 = explode(":",$time2);
-      $year2 = $date_break2[2];
-      $month2 = ($date_break2[0])-1;
-      $day2 = $date_break2[1];
-      $hour2 = $time_break2[0];
-      $minute2 = $time_break2[1];
-      if($hour2 == ""){
-        $hour2 = $hour;
-      }
-      if($minute2 == ""){
-        $minute2 = $minute;
-      }
+      $date2 = $i['end_date'];
+      $date_break2 = explode("-",$date2);
+      $year2 = $date_break2[0];
+      $month2 = ($date_break2[1])-1;
+      $day2 = $date_break2[2];
 
       if($i['name'] == 1){
         $allDay = "true";
@@ -69,6 +51,7 @@
       else{
         $allDay = "false";
       }
+
       if($now[year] <= $year2){
         if($now['mon'] == $month2+1){
           if($now['mday'] <= $day2){
@@ -77,8 +60,8 @@
             }
             echo "{";
             echo   "title: '".$i['name']."',";
-            echo  "start: new Date(".$year.",".$month.",".$day.",".$hour.",".$minute."),";
-            echo  "end: new Date(".$year2.",".$month2.",".$day2.",".$hour2.",".$minute2."),";
+            echo  "start: new Date(".$year.",".$month.",".$day."),";
+            echo  "end: new Date(".$year2.",".$month2.",".$day2."),";
             echo  "allDay: ".$allDay.",";
             echo  "className: 'hmi_event',";
             echo  "id: ".$i['id'];
@@ -93,8 +76,8 @@
             }
             echo "{";
             echo   "title: '".$i['name']."',";
-            echo  "start: new Date(".$year.",".$month.",".$day.",".$hour.",".$minute."),";
-            echo  "end: new Date(".$year2.",".$month2.",".$day2.",".$hour2.",".$minute2."),";
+            echo  "start: new Date(".$year.",".$month.",".$day."),";
+            echo  "end: new Date(".$year2.",".$month2.",".$day2."),";
             echo  "allDay: ".$allDay.",";
             echo  "className: 'hmi_event',";
             echo  "id: ".$i['id'];
@@ -108,8 +91,8 @@
           }
           echo "{";
           echo   "title: '".$i['name']."',";
-          echo  "start: new Date(".$year.",".$month.",".$day.",".$hour.",".$minute."),";
-          echo  "end: new Date(".$year2.",".$month2.",".$day2.",".$hour2.",".$minute2."),";
+          echo  "start: new Date(".$year.",".$month.",".$day."),";
+            echo  "end: new Date(".$year2.",".$month2.",".$day2."),";
           echo  "allDay: ".$allDay.",";
           echo  "className: 'hmi_event',";
           echo  "id: ".$i['id'];
@@ -124,8 +107,8 @@
           }
           echo "{";
           echo   "title: '".$i['name']."',";
-          echo  "start: new Date(".$year.",".$month.",".$day.",".$hour.",".$minute."),";
-          echo  "end: new Date(".$year2.",".$month2.",".$day2.",".$hour2.",".$minute2."),";
+          echo  "start: new Date(".$year.",".$month.",".$day."),";
+          echo  "end: new Date(".$year2.",".$month2.",".$day2."),";
           echo  "allDay: ".$allDay.",";
           echo  "className: 'hmi_event',";
           echo  "id: ".$i['id'];
@@ -141,8 +124,8 @@
         }
         echo "{";
         echo   "title: '".$i['name']."',";
-        echo  "start: new Date(".$year.",".$month.",".$day.",".$hour.",".$minute."),";
-        echo  "end: new Date(".$year2.",".$month2.",".$day2.",".$hour2.",".$minute2."),";
+        echo  "start: new Date(".$year.",".$month.",".$day."),";
+        echo  "end: new Date(".$year2.",".$month2.",".$day2."),";
         echo  "allDay: ".$allDay.",";
         echo  "className: 'hmi_event',";
         echo  "id: ".$i['id'];
