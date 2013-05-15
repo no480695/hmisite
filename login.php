@@ -9,22 +9,22 @@ $error = 0;
 
 
 if ( $_POST['username'] ){
-	
+
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 
 	$id= mysql_query("SELECT id FROM user WHERE username = '".$username."' AND password = '".$password."'");
 	$name = mysql_query("SELECT name FROM user WHERE username = '".$username."' AND password = '".$password."'");
 	$email = mysql_query("SELECT email FROM user WHERE username = '".$username."' AND password = '".$password."'");
-	
+
 	$row = mysql_fetch_row($id);
 	$row2 = mysql_fetch_row($name);
 	$row3 = mysql_fetch_row($email);
-	
-	if(!$row){ 
+
+	if(!$row){
 		session_destroy();
 		$error = 1;
-		
+
 	}
 	else{
 		$_SESSION['user_id'] = $row[0];
@@ -39,7 +39,7 @@ if ( $_POST['username'] ){
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Sign in &middot; Twitter Bootstrap</title>
+    <title>Sign in</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -64,14 +64,14 @@ if ( $_POST['username'] ){
 
       <form method="POST" class="form-signin" action="login.php">
         <h2 class="form-signin-heading">HMI Login</h2>
-		
+
 <?
 		if ( $error == 1 ){
 ?>
 		<div class="alert alert-error">
               <strong>Oops!</strong> It appears your login credentials are incorrect. Please try again.
         </div>
-<?	
+<?
 		}
 ?>
         <input name="username" type="text" class="input-block-level" placeholder="Username">

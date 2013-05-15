@@ -44,9 +44,9 @@ $COMMANDER_ID = $get[0];
   </head>
 
   <body>
-  
+
   	<div id="eventModal" class="modal hide fade" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 40%;"></div>
-    
+
     <div id="photoModal" class="modal hide fade" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 30%;"></div>
 
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 30%;">
@@ -60,37 +60,37 @@ $COMMANDER_ID = $get[0];
 			<p>Enter as much or little of the information about the event as you see fit. Furhter information can be entered by clicking on the event in the calander.</p>
 			<p>The event may not show up right after submitting, please refresh the page and navigate to the calendar to see changes.</p>
 		</div>
-		
+
 		<div class="form-horizontal">
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputEmail">Title</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_name" placeholder="Title">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Start Date</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_start_date" placeholder="mm/dd/yyyy hh:mm">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">End Date</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_end_date" placeholder="mm/dd/yyyy hh:mm">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Address</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_location" placeholder="# Street Town, State Zip">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Event Description / Information</label>
 			<div class="controls">
@@ -105,16 +105,16 @@ $COMMANDER_ID = $get[0];
 			</div>
 		  </div>
 		</div>
-		
-		
+
+
 	  </div>
 	  <div class="modal-footer">
 		<button id="close-creator" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 	  </div>
 	</div>
-	
-	
-	
+
+
+
 	<div id="addPics" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 30%;">
 	  <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -125,9 +125,9 @@ $COMMANDER_ID = $get[0];
 			<button type="button" class="close" data-dismiss="alert">x</button>
 			<p>Multiple files can be chosen at once. Please consider the content of your images when adding them to HMIsite.com</p>
 		</div>
-		
+
 		<div class="form-horizontal">
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputEmail">Title</label>
 			<div class="controls">
@@ -139,7 +139,7 @@ $COMMANDER_ID = $get[0];
 				</select>
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Photos</label>
 			<div class="controls">
@@ -156,21 +156,21 @@ $COMMANDER_ID = $get[0];
 			</div>
 		  </div>
 		</div>
-		
-		
+
+
 	  </div>
 	  <div class="modal-footer">
 		<button id="close-creator" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 	  </div>
 	</div>
-  
-  
-  
+
+
+
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          
+
          <a class="brand" href="/">Historical Military Impressions</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
@@ -197,7 +197,7 @@ $COMMANDER_ID = $get[0];
 			  <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$_SESSION['user_name']?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-				
+
 				<? if ( $_SESSION['user_id'] == $COMMANDER_ID ){ ?>
 					<li><a href="#myModal" role="button" id="submit-info" data-toggle="modal">Add Event</a></li>
 					<li><a href="#addPics" role="button" id="submit-info2" data-toggle="modal">Upload Photos</a></li>
@@ -215,8 +215,8 @@ $COMMANDER_ID = $get[0];
       </div>
     </div>
 
-	
-	
+
+
     <div class="container">
 		<div class="hero-unit" style="background-image: linear-gradient(bottom, rgb(136,158,163) 0%, rgb(161,190,194) 50%, rgb(192,212,219) 81%);
 background-image: -o-linear-gradient(bottom, rgb(136,158,163) 0%, rgb(161,190,194) 50%, rgb(192,212,219) 81%);
@@ -232,8 +232,8 @@ background-image: -webkit-gradient(
 	color-stop(0.5, rgb(161,190,194)),
 	color-stop(0.81, rgb(192,212,219))
 );-webkit-box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);
-        
-        box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);">	
+
+        box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);">
 			<div class="row">
 				<div class="span8">
 					<h1 style="text-shadow: 1px 2px 3px #242424;
@@ -244,12 +244,12 @@ background-image: -webkit-gradient(
 				<div class="span2"><img style="border-radius:10px;" src="/pages/era/page_images/stars.gif" /></div>
 			</div>
 		</div>
-	
+
 		<ul class="nav nav-tabs" id="myTab">
 			<li class="active"><a href="#welcome" data-toggle="tab">Welcome</a></li>
 			<li><a id="cal-tab" href="#cal" data-toggle="tab">Calendar</a></li>
 			<li><a href="#photos" data-toggle="tab">Photos</a></li>
-			
+
 			<li><a href="#uniform" data-toggle="tab">Uniform</a></li>
 			<li><a href="#equipment" data-toggle="tab">Equipment</a></li>
 		</ul>
@@ -259,7 +259,7 @@ background-image: -webkit-gradient(
 				<div class="row">
 					<div class="span11 well">
 						<p class="lead">A Brief History</p>
-						
+
 						<p>When war begin in 1812 the Marine Corps was only fifteen years old.  Marines had served during the American Revolution , but the units raised during that conflict had been disbanded in 1783.  During the troubled 1790s it had become necessary to organize a small frigate navy with a tiny marine corps to protect the growing merchant fleet of the United States.  These "soldiers of the sea" were under the Secretary of the Navy.  When serving as part of land forces, however, they came under the authority of the superior army officers.  Marines, then as now, considered themselves  the elite of American fighting men and sometimes had to be reminded that they should obey army and not navy officers in these circumstances.</p>
 						<p>As with the rest of the regular forces, the authorized establishment of the marine corps far exceeded the actual numbers in service.  Fortunately, the figures for "active duty strength" are known for the War of 1812.</p>
 						<p>June 30, 1812   Ten officers, 484 enlisted men.</p>
@@ -299,7 +299,7 @@ background-image: -webkit-gradient(
 					</div>
 					<div class="span4">
 							<img style="border-radius:5px;-webkit-box-shadow: inset 2px 2px 8px 0px rgba(1, 1, 1, 0.4);
-			
+
 			box-shadow: inset 2px 2px 8px 0px rgba(1, 1, 1, 0.4);" src="/pages/era/page_images/box.jpg" />
 					</div>
 				</div>
@@ -308,9 +308,9 @@ background-image: -webkit-gradient(
 
 		</div>
 
-		
+
     </div> <!-- /container -->
-	
+
 	<footer class="footer">
 		<div class="container">
 			<p class="pull-right"><a href="#">Back to top</a></p>
@@ -329,33 +329,33 @@ background-image: -webkit-gradient(
 	<script type="text/javascript" src="/js/date-time.js"></script>
 	<script type="text/javascript" src="/js/cal.js"></script>
     <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyBQnCHbDIwTqbI8ypbraOtMLiAFjrXfi4U&sensor=false" type="text/javascript"></script>
-    
-	
-	
+
+
+
 	<script type='text/javascript'>
-	
+
 		$("#new_event_start_date").mask("99/99/9999 99:99",{placeholder:"_"});
 		$("#new_event_end_date").mask("99/99/9999 99:99",{placeholder:"_"});
-		
+
 
 	<?
-	
+
 	include("get-events.php");
-	
-	?>	
-		
+
+	?>
+
 		$('.image-tile').live('click',function(){
 			var photo_parts = $(this).attr('id').split('-');
 			var photo_id = photo_parts[1];
-			
+
 			$.post('set-photo-modal.php',{ id : photo_id }, function(data){
                 $('#photoModal').html(data);
-                $('#photoModal').modal('show');        
+                $('#photoModal').modal('show');
             });
-				
-			
+
+
 		});
-		
+
 		$('#submit-new-event').click(function(){
 			var creator = $('#new_event_creator').val();
 			var era = $('#new_event_era').val();
@@ -364,7 +364,7 @@ background-image: -webkit-gradient(
 			var end = $('#new_event_end_date').val();
 			var address = $('#new_event_location').val();
 			var details = $('#new_event_description').val();
-			
+
 			data = {
 				mod_person_id	: creator,
 				era_id		: era,
@@ -374,24 +374,24 @@ background-image: -webkit-gradient(
 				location	: address,
 				description	: details
 			}
-			
+
 			if ( title == "" || start == ""){
 				alert ( "Atleast a Title and a Start Date must be entered to declare an event" );
 			}
 			else{
-				$.post('save-new-event.php', data, function(req){
+				$.post('/pages/era/save-new-event.php', data, function(req){
 					if ( req == 'success' ){
 						$('#close-creator').trigger('click');
 					}
 					else{
 						alert( "There was an error entering your event. Please check the form for invalid characters. If the problem continues, please email no480695@gmail.com with an error report" );
 					}
-				
+
 				});
 			}
-			
+
 		});
-		
+
 	</script>
 
   </body>
