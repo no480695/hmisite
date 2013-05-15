@@ -12,9 +12,9 @@ $description 	= "'".str_replace("'","`",$_POST['description'])."'";
 $mod_person_id 	= $_POST['mod_person_id'];
 
 
-$dbh=mysql_connect ("localhost", "hmisite", "beaver12")
+$dbh=mysql_connect ("localhost", "noffutt", "beaver12")
 or die ('I cannot connect to the database because: ' . mysql_error());
-mysql_select_db("hmisite_main")or die( mysql_error());
+mysql_select_db("hmi_site")or die( mysql_error());
 
 if ( mysql_query("INSERT INTO event (era_id,start_date,end_date,name,location,description,mod_person_id) VALUES (".$era_id.",".$start_date.",".$end_date.",".$name.",".$location.",".$description.",".$mod_person_id.")") ) {
 	exit ('success');
