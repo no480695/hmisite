@@ -12,8 +12,6 @@ mysql_select_db("hmi_site")or die( mysql_error());
 
 $now = getdate();
 
-$all_events = mysql_query("SELECT id,start_date,end_date,name,description,all_day FROM event WHERE era_id = ".$ERA_ID);
-
 $get_commander = mysql_query("SELECT commander_id FROM era WHERE id = ".$ERA_ID);
 $get = mysql_fetch_row($get_commander);
 $COMMANDER_ID = $get[0];
@@ -44,14 +42,14 @@ $COMMANDER_ID = $get[0];
   </head>
 
   <body>
-  
+
   	<div id="eventModal" class="modal hide fade" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 40%;"></div>
-    
+
     <div id="photoModal" class="modal hide fade" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 30%;"></div>
-  
-  
-  
-  
+
+
+
+
   <div id="addPics" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 30%;">
 	  <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -62,21 +60,25 @@ $COMMANDER_ID = $get[0];
 			<button type="button" class="close" data-dismiss="alert">x</button>
 			<p>Multiple files can be chosen at once. Please consider the content of your images when adding them to HMIsite.com</p>
 		</div>
-		
+
 		<div class="form-horizontal">
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputEmail">Title</label>
 			<div class="controls">
 			<form name="pics_to_get" method="post" id="pics_to_get" action="/pages/process_pics.php" enctype="multipart/form-data">
 				<select id="event_select" name="event_select">
-			  <? while ($i = mysql_fetch_array($all_events, MYSQL_ASSOC)) { ?>
+			  <?
+			  $all_events2 = mysql_query("SELECT id,start_date,end_date,name,description,all_day FROM event WHERE era_id = ".$ERA_ID);
+
+
+			  while ($i = mysql_fetch_array($all_events2, MYSQL_ASSOC)) { ?>
 					<option value="<? echo $i['id']; ?>"><? echo $i['name']; ?></option>
 			  <? } ?>
 				</select>
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Photos</label>
 			<div class="controls">
@@ -93,19 +95,19 @@ $COMMANDER_ID = $get[0];
 			</div>
 		  </div>
 		</div>
-		
-		
+
+
 	  </div>
 	  <div class="modal-footer">
 		<button id="close-creator" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 	  </div>
 	</div>
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 30%;">
 	  <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -117,37 +119,37 @@ $COMMANDER_ID = $get[0];
 			<p>Enter as much or little of the information about the event as you see fit. Furhter information can be entered by clicking on the event in the calander.</p>
 			<p>The event may not show up right after submitting, please refresh the page and navigate to the calendar to see changes.</p>
 		</div>
-		
+
 		<div class="form-horizontal">
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputEmail">Title</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_name" placeholder="Title">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Start Date</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_start_date" placeholder="mm/dd/yyyy hh:mm">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">End Date</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_end_date" placeholder="mm/dd/yyyy hh:mm">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Address</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_location" placeholder="# Street Town, State Zip">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Event Description / Information</label>
 			<div class="controls">
@@ -162,21 +164,21 @@ $COMMANDER_ID = $get[0];
 			</div>
 		  </div>
 		</div>
-		
-		
+
+
 	  </div>
 	  <div class="modal-footer">
 		<button id="close-creator" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 	  </div>
 	</div>
-  
-  
-  
+
+
+
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          
+
           <a class="brand" href="/">Historical Military Impressions</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
@@ -203,7 +205,7 @@ $COMMANDER_ID = $get[0];
 			  <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$_SESSION['user_name']?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-				
+
 				<? if ( $_SESSION['user_id'] == $COMMANDER_ID ){ ?>
 					<li><a href="#myModal" role="button" id="submit-info" data-toggle="modal">Add Event</a></li>
 					<li><a href="#addPics" role="button" id="submit-info2" data-toggle="modal">Upload Photos</a></li>
@@ -221,8 +223,8 @@ $COMMANDER_ID = $get[0];
       </div>
     </div>
 
-	
-	
+
+
     <div class="container">
 		<div class="hero-unit" style="background-image: linear-gradient(bottom, rgb(173,137,64) 11%, rgb(204,175,116) 82%);
 background-image: -o-linear-gradient(bottom, rgb(173,137,64) 11%, rgb(204,175,116) 82%);
@@ -237,8 +239,8 @@ background-image: -webkit-gradient(
 	color-stop(0.11, rgb(173,137,64)),
 	color-stop(0.82, rgb(204,175,116))
 );-webkit-box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);
-        
-        box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);">	
+
+        box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);">
 			<div class="row">
 				<div class="span8">
 					<h1 style="text-shadow: 1px 2px 3px #242424;
@@ -246,11 +248,11 @@ background-image: -webkit-gradient(
 					<h2 style="text-shadow: 1px 2px 3px #242424;
         filter: dropshadow(color=#242424, offx=1, offy=2);">"The Bloody Bucket"</h2>
 				</div>
-                
+
 				<div class="span2"><img src="/images/resources/28th.png" /></div>
 			</div>
 		</div>
-	
+
 		<ul class="nav nav-tabs" id="myTab">
 			<li class="active"><a href="#welcome" data-toggle="tab">Welcome</a></li>
 			<li><a id="cal-tab" href="#cal" data-toggle="tab">Calendar</a></li>
@@ -263,7 +265,7 @@ background-image: -webkit-gradient(
 					<div class="span7 well">
 						<p class="lead">About Us</p>
 						<p>The 109th was formed from the 1st Penn. Infantry and the 13th Penn. Infantry. Co. M was commanded by Capt. George Wagner. The Regiment left NYC on May 2nd for England.  At the battle of Marne Co's M and L were left holding the center of the line after French Troops retired in panic.  After heavy fighting only 150 officers and men remained out of 500.</p>
-                        
+
                         <p>Please contact Jim Gibson if you are interested in doing this impression. Jim will take the time to answer any of your question and help you get started. his e-mail is <a href="jimallwars@email.msn.com">jimallwars@email.msn.com</a></p>
 					</div>
 					<div class="span4">
@@ -283,9 +285,9 @@ background-image: -webkit-gradient(
 
 		</div>
 
-		
+
     </div> <!-- /container -->
-	
+
 	<footer class="footer">
 		<div class="container">
 			<p class="pull-right"><a href="#">Back to top</a></p>
@@ -304,33 +306,33 @@ background-image: -webkit-gradient(
 	<script type="text/javascript" src="/js/date-time.js"></script>
 	<script type="text/javascript" src="/js/cal.js"></script>
     <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyBQnCHbDIwTqbI8ypbraOtMLiAFjrXfi4U&sensor=false" type="text/javascript"></script>
-    
-	
-	
+
+
+
 	<script type='text/javascript'>
-	
+
 		$("#new_event_start_date").mask("99/99/9999 99:99",{placeholder:"_"});
 		$("#new_event_end_date").mask("99/99/9999 99:99",{placeholder:"_"});
-		
+
 
 	<?
-	
+
 	include("get-events.php");
-	
-	?>	
-		
+
+	?>
+
 		$('.image-tile').live('click',function(){
 			var photo_parts = $(this).attr('id').split('-');
 			var photo_id = photo_parts[1];
-			
+
 			$.post('set-photo-modal.php',{ id : photo_id }, function(data){
                 $('#photoModal').html(data);
-                $('#photoModal').modal('show');        
+                $('#photoModal').modal('show');
             });
-				
-			
+
+
 		});
-		
+
 		$('#submit-new-event').click(function(){
 			var creator = $('#new_event_creator').val();
 			var era = $('#new_event_era').val();
@@ -339,7 +341,7 @@ background-image: -webkit-gradient(
 			var end = $('#new_event_end_date').val();
 			var address = $('#new_event_location').val();
 			var details = $('#new_event_description').val();
-			
+
 			data = {
 				mod_person_id	: creator,
 				era_id		: era,
@@ -349,7 +351,7 @@ background-image: -webkit-gradient(
 				location	: address,
 				description	: details
 			}
-			
+
 			if ( title == "" || start == ""){
 				alert ( "Atleast a Title and a Start Date must be entered to declare an event" );
 			}
@@ -361,12 +363,12 @@ background-image: -webkit-gradient(
 					else{
 						alert( "There was an error entering your event. Please check the form for invalid characters. If the problem continues, please email no480695@gmail.com with an error report" );
 					}
-				
+
 				});
 			}
-			
+
 		});
-		
+
 	</script>
 
   </body>

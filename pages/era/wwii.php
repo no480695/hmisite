@@ -12,8 +12,6 @@ mysql_select_db("hmi_site")or die( mysql_error());
 
 $now = getdate();
 
-$all_events = mysql_query("SELECT id,start_date,end_date,name,description,all_day FROM event WHERE era_id = ".$ERA_ID);
-
 $get_commander = mysql_query("SELECT commander_id FROM era WHERE id = ".$ERA_ID);
 $get = mysql_fetch_row($get_commander);
 $COMMANDER_ID = $get[0];
@@ -46,7 +44,7 @@ $COMMANDER_ID = $get[0];
   <body>
   	<div id="eventModal" class="modal hide fade" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 40%;"></div>
 	<div id="photoModal" class="modal hide fade" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:800px;top: 40%;"></div>
-    
+
     <div id="addPics" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 30%;">
 	  <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -57,21 +55,25 @@ $COMMANDER_ID = $get[0];
 			<button type="button" class="close" data-dismiss="alert">x</button>
 			<p>Multiple files can be chosen at once. Please consider the content of your images when adding them to HMIsite.com</p>
 		</div>
-		
+
 		<div class="form-horizontal">
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputEmail">Title</label>
 			<div class="controls">
 			<form name="pics_to_get" method="post" id="pics_to_get" action="/pages/process_pics.php" enctype="multipart/form-data">
 				<select id="event_select" name="event_select">
-			  <? while ($i = mysql_fetch_array($all_events, MYSQL_ASSOC)) { ?>
+			  <?
+			  $all_events2 = mysql_query("SELECT id,start_date,end_date,name,description,all_day FROM event WHERE era_id = ".$ERA_ID);
+
+
+			  while ($i = mysql_fetch_array($all_events2, MYSQL_ASSOC)) { ?>
 					<option value="<? echo $i['id']; ?>"><? echo $i['name']; ?></option>
 			  <? } ?>
 				</select>
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Photos</label>
 			<div class="controls">
@@ -88,24 +90,24 @@ $COMMANDER_ID = $get[0];
 			</div>
 		  </div>
 		</div>
-		
-		
+
+
 	  </div>
 	  <div class="modal-footer">
 		<button id="close-creator" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 	  </div>
 	</div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 30%;">
 	  <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -117,37 +119,37 @@ $COMMANDER_ID = $get[0];
 			<p>Enter as much or little of the information about the event as you see fit. Furhter information can be entered by clicking on the event in the calander.</p>
 			<p>The event may not show up right after submitting, please refresh the page and navigate to the calendar to see changes.</p>
 		</div>
-		
+
 		<div class="form-horizontal">
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputEmail">Title</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_name" placeholder="Title">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Start Date</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_start_date" placeholder="mm/dd/yyyy hh:mm">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">End Date</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_end_date" placeholder="mm/dd/yyyy hh:mm">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Address</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_location" placeholder="# Street Town, State Zip">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Event Description / Information</label>
 			<div class="controls">
@@ -162,21 +164,21 @@ $COMMANDER_ID = $get[0];
 			</div>
 		  </div>
 		</div>
-		
-		
+
+
 	  </div>
 	  <div class="modal-footer">
 		<button id="close-creator" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 	  </div>
 	</div>
-  
-  
-  
+
+
+
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          
+
           <a class="brand" href="/">Historical Military Impressions</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
@@ -203,7 +205,7 @@ $COMMANDER_ID = $get[0];
 			  <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$_SESSION['user_name']?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-				
+
 				<? if ( $_SESSION['user_id'] == $COMMANDER_ID ){ ?>
 					<li><a href="#myModal" role="button" id="submit-info" data-toggle="modal">Add Event</a></li>
 					<li><a href="#addPics" role="button" id="submit-info2" data-toggle="modal">Upload Photos</a></li>
@@ -221,8 +223,8 @@ $COMMANDER_ID = $get[0];
       </div>
     </div>
 
-	
-	
+
+
     <div class="container">
 		<div class="hero-unit" style="background-image: linear-gradient(bottom, rgb(156,152,81) 30%, rgb(184,178,107) 68%);
 background-image: -o-linear-gradient(bottom, rgb(156,152,81) 30%, rgb(184,178,107) 68%);
@@ -237,8 +239,8 @@ background-image: -webkit-gradient(
 	color-stop(0.3, rgb(156,152,81)),
 	color-stop(0.68, rgb(184,178,107))
 );-webkit-box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);
-        
-        box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);">	
+
+        box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);">
 			<div class="row">
 				<div class="span8">
 					<h1 style="text-shadow: 1px 2px 3px #242424;
@@ -249,12 +251,12 @@ background-image: -webkit-gradient(
 				<div class="span2"><img src="/images/resources/28th.png" /></div>
 			</div>
 		</div>
-	
+
 		<ul class="nav nav-tabs" id="myTab">
 			<li class="active"><a href="#welcome" data-toggle="tab">Welcome</a></li>
 			<li><a id="cal-tab" href="#cal" data-toggle="tab">Calendar</a></li>
 			<li><a href="#photos" data-toggle="tab">Photos</a></li>
-			
+
 			<li><a href="#clothing" data-toggle="tab">Required Clothing</a></li>
 			<li><a href="#books" data-toggle="tab">Recommended Books</a></li>
 			<li><a href="#links" data-toggle="tab">Useful Links</a></li>
@@ -289,7 +291,7 @@ background-image: -webkit-gradient(
                         <br><br>
                         Trousers, wool serge, M1937 OD, Light shade (mustard), enlisted pattern.  Be aware that the M1945 trousers are close in color but have a pocket flap for the rear pocket.  These trousers should not be worn.
                         <br><br>
-                        Belt, trousers, light OD or khaki with open square frame buckle. 
+                        Belt, trousers, light OD or khaki with open square frame buckle.
                         <br><br>
                         Boots, rough out. (Black boots or lug soled boots are NOT acceptable) The low quarter service boots are preferred as they can be worn for both early and late war events.  Also acceptable are the M1943 Combat boots with the double buckles at the top.  We recommend purchasing authentic reproductions.
                         <br><br>
@@ -304,7 +306,7 @@ background-image: -webkit-gradient(
                         Eyeglasses : Round gold or silver metal frames are required.  Incorrect eyeware is the fastest way to destroy an authentic impression
                         <hr>
                         <h2>Items to Get Later</h2>
-                                    
+
                         Knit cap, M1941 (Jeep cap).  Original M1941 caps are expensive and very hard to find in good condition, we recommend purchasing an authentic reproduction.  Stay away from the current issue green caps, the WWII versions were more brown in color.   This cap will only be worn underneath of the helmet and not as replacement for the Garrison cap (overseas cap).
                         <br><br>
                         Under shirts &amp; Under shorts, light OD, correct reproductions now exist so either they or original could be worn.  The shirt is to be the "tank top" version.  The current brown issue shirts shall not be worn unless they are totally covered up.
@@ -313,7 +315,7 @@ background-image: -webkit-gradient(
                         <br><br>
                         M1938 4 Pocket blouse (must have correct collar disc &amp; keystone patch).  The M1944 (a.k.a. Ike jacket) was not issued to the enlisted men until very late in the war.
                         <br><br>
-                        "Class A" uniforms shall be void of all valor medals, achievement awards, and discharge patches (CIB, bronze stars, good conduct, etc).  The ETO ribbon may be worn as the Regiment was authorized to wear it in 1943.  As we portray the Regiment during the winter of 44 – 45, there shall be no more than two (2) campaign stars worn on the ETO ribbon.   As for overseas service stripes (Hershey Bars), no more than two shall be worn as each is for 6 months of overseas service and the Regiment did not arrive in Wales until October 1943. 
+                        "Class A" uniforms shall be void of all valor medals, achievement awards, and discharge patches (CIB, bronze stars, good conduct, etc).  The ETO ribbon may be worn as the Regiment was authorized to wear it in 1943.  As we portray the Regiment during the winter of 44 – 45, there shall be no more than two (2) campaign stars worn on the ETO ribbon.   As for overseas service stripes (Hershey Bars), no more than two shall be worn as each is for 6 months of overseas service and the Regiment did not arrive in Wales until October 1943.
                         <br><br>
                         If you have earned valor and/or achievement awards with service to our current military, then the WWII version may be worn.
                         <br><br>
@@ -326,10 +328,10 @@ background-image: -webkit-gradient(
                          Scarf, OD knit wool.  In lieu of an actual scarf you could cut up an old worn out army blanket into long strips.
                         <br><br>
                         Gloves.  May either be the leather palmed wool gloves, which are being reproduced, or an OD wool knit type.
-                        <br><br>	
+                        <br><br>
                         <hr>
                         <h2>Equipment</h2>
-                                    
+
                         Helmet, M1 and liner, w/light OD web straps. Helmet must be dark OD in color and have the seam in the front with either fixed or swivel bales.  The webbing inside the liner will not be stitched together as this is post-war, the internal loops will be tied together with a cord.  Division insignia may be painted on the helmet.  However not many would have been seen as the war progressed as there were many replacements that entered the Division.  The chinstraps of the helmet must be SEWN and not clamped onto the metal loops of the shell.
                         <br><br>
                         M1 Garand, with reproduction M1907 leather sling or web sling with the FLAT keeper.  The keepers with the bump were post-war.  The M1 Carbine will be used by the officer only, unless prior arrangements have been made.
@@ -356,7 +358,7 @@ background-image: -webkit-gradient(
                         <br><br>
                         2 Bandoleers, light OD.  Must have the neat stitching not the zig-zag stitch of the post war version
                         <br><br>
-                        The M1936 suspenders and mussette bag shall be worn by the officer only, unless prior arrangements have been made.  The cartridge belt may be either worn by itself or with the Haversack, both methods are proven through period photographs and accounts. 
+                        The M1936 suspenders and mussette bag shall be worn by the officer only, unless prior arrangements have been made.  The cartridge belt may be either worn by itself or with the Haversack, both methods are proven through period photographs and accounts.
                         <br><br>
                         The bayonet and entrenching tool will be worn, either on the cartridge belt or on the haversack.  They carried them so we shall carry them.
                         <br><br>
@@ -367,7 +369,7 @@ background-image: -webkit-gradient(
                         M1944 and M1945 field gear will not be worn.
                         <br><br>
                         <hr>
-                        <h2>Other Approved Items</h2>         
+                        <h2>Other Approved Items</h2>
                         Dog Tags,  notched.
                         <br><br>
                         Watch, GI or civilian, correct style of the period.
@@ -392,7 +394,7 @@ background-image: -webkit-gradient(
                         <br><br>
             		</div>
                 </div>
-	
+
 			</div>
 			<div class="tab-pane" id="books">
 				<div class="row">
@@ -407,19 +409,19 @@ background-image: -webkit-gradient(
                          <h4 style="margin-bottom:0px;">The World War II GI, US Army Uniforms 1941-1945 in Color Photos</h4>
                          <span style="float:right;margin-right:15px;"><p>by Richard Windrow &amp; Tim Hawkins</p></span>
                          <br>
-                         
+
                          <h4 style="margin-bottom:0px;">US Infantry Weapons of World War II</h4>
                          <span style="float:right;margin-right:15px;"><p>by Bruce N. Canfield</p></span>
                          <br>
-                         
+
                          <h4 style="margin-bottom:0px;">US Army Handbook 1939-1945</h4>
                          <span style="float:right;margin-right:15px;"><p>by George Stanton</p></span>
                          <br>
-                         
+
                          <h4 style="margin-bottom:0px;">US Army Uniforms of World War II </h4>
                          <span style="float:right;margin-right:15px;"><p>by Shelby Stanton</p></span>
                          <br>
-                         
+
                          <h4 style="margin-bottom:0px;">Uniforms, Weapons of World War II GI </h4>
                          <span style="float:right;margin-right:15px;"><p>by Stephen Sylvia &amp; Michael O'Donnell</p></span>
                          <br><hr>
@@ -473,7 +475,7 @@ background-image: -webkit-gradient(
                          <span style="float:right;margin-right:15px;"><p>by George W. Neil</p></span>
                          <br>
                     </div>
-                
+
             </div>
 			</div>
 			<div class="tab-pane" id="links">
@@ -483,73 +485,73 @@ background-image: -webkit-gradient(
 							<hr />
 							<center><p class="lead">WWII Impressions - Top quality reproduction American uniforms and footwear</p></center>
 							<center><p><a target="_blank" href="http://www.wgn.net/~ww2imp">http://www.wgn.net/~ww2imp</a></p></center>
-							
+
 							<center><p class="lead">Military Marketplace - Specializes in WWI and WWII US items</p></center>
 							<center><p><a target="_blank" href="http://www.militarymarketplace.com">http://www.militarymarketplace.com</a></p></center>
-							
+
 							<center><p class="lead">At The Front - Original and repro GI items</p></center>
 							<center><p><a target="_blank" href="http://www.atthefront.com">http://www.atthefront.com</a></p></center>
-							
+
 							<center><p class="lead">The Battle of the Bulge site</p></center>
 							<center><p><a target="_blank" href="http://www.wwiifederation.org">http://www.wwiifederation.org</a></p></center>
-							
+
 							<center><p class="lead">Prairie Flower Leather co.  "A good source for Kelly Helmet liners"</p></center>
 							<center><p><a target="_blank" href="http://www.cornhusker.net/~pflc/">http://www.cornhusker.net/~pflc/</a></p></center>
-							
+
 							<center><p class="lead">Bayonet, Inc.   "Good Reproductions of US gear"</p></center>
 							<center><p><a target="_blank" href="http://www.bayonetinc.com/">http://www.bayonetinc.com/</a></p></center>
-							
+
 							<center><p class="lead">World War 2 Ration Technologies  </p></center>
 							<center><p><a target="_blank" href="http://www.ww2rationtechnologies.com/">http://www.ww2rationtechnologies.com/</a></p></center>
-                            
+
                             <center><p class="lead">WW2 Reproduction Paperwork</p></center>
 							<center><p><a target="_blank" href="http://members.tripod.com/thirtieth_infantry/Repro/repropaperwork.html ">http://members.tripod.com/thirtieth_infantry/Repro/repropaperwork.html </a></p></center>
-                            
+
                             <center><p class="lead">M1940 Dog Tag Chain Reproductions</p></center>
 							<center><p><a target="_blank" href="http://www.geocities.com/mambi66/m1940dogtagchainhome.html">http://www.geocities.com/mambi66/m1940dogtagchainhome.html</a></p></center>
-                            
+
                             <center><p class="lead">Good quality WWI and WWII US gear and clothing</p></center>
 							<center><p><a target="_blank" href="http://aefsupply.com/">http://aefsupply.com/</a></p></center>
-                            
+
                             <center><p class="lead">What Price Glory - Original and Repro items</p></center>
 							<center><p><a target="_blank" href="http://www.whatpriceglory.com/usunif.htm">http://www.whatpriceglory.com/usunif.htm</a></p></center>
-                            
+
                             <center><p class="lead">Stahlhelms Military Collectables</p></center>
 							<center><p><a target="_blank" href="www.stahlhelms.com">www.stahlhelms.com</a></p></center>
-                            
+
                             <center><p class="lead">National Museum of Military History - Diekirch, Luxembourg</p></center>
 							<center><p><a target="_blank" href="http://www.nat-military-museum.lu/">http://www.nat-military-museum.lu/</a></p></center>
-                            
+
                      	<hr /><center><h2>Allied Units</h2></center>
-						
+
 							<center><p class="lead">33rd Signal Construction Battalion</p></center>
 							<center><p><a target="_blank" href="http://members.tripod.com/33rdscb/">http://members.tripod.com/33rdscb/</a></p></center>
-                            
+
                             <center><p class="lead">29th Division</p></center>
 							<center><p><a target="_blank" href="http://www.29thdivision.com/">http://www.29thdivision.com/</a></p></center>
-                            
+
                             <center><p class="lead">26th Infantry Division</p></center>
 							<center><p><a target="_blank" href="http://pages.cthome.net/yd104/">http://pages.cthome.net/yd104/</a></p></center>
-                            
+
                             <center><p class="lead">4th Infantry Division MP Platoon</p></center>
 							<center><p><a target="_blank" href="http://ivydiv_mp.tripod.com/">http://ivydiv_mp.tripod.com/</a></p></center>
-                            
+
                             <center><p class="lead">45th Division - Pennsylvania</p></center>
 							<center><p><a target="_blank" href="http://www.45thdivision.org/">http://www.45thdivision.org/</a></p></center>
-                            
+
                             <center><p class="lead">28th Division 110th</p></center>
 							<center><p><a target="_blank" href="http://www.bloodybucket.com">http://www.bloodybucket.com</a></p></center>
-                            
-                        
+
+
 					</div>
 				</div>
 			</div>
 
 		</div>
 
-		
+
     </div> <!-- /container -->
-	
+
 	<footer class="footer">
 		<div class="container">
 			<p class="pull-right"><a href="#">Back to top</a></p>
@@ -568,33 +570,33 @@ background-image: -webkit-gradient(
 	<script type="text/javascript" src="/js/date-time.js"></script>
 	<script type="text/javascript" src="/js/cal.js"></script>
     <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyBQnCHbDIwTqbI8ypbraOtMLiAFjrXfi4U&sensor=false" type="text/javascript"></script>
-    
-	
-	
+
+
+
 	<script type='text/javascript'>
-	
+
 		$("#new_event_start_date").mask("99/99/9999 99:99",{placeholder:"_"});
 		$("#new_event_end_date").mask("99/99/9999 99:99",{placeholder:"_"});
-		
+
 
 	<?
-	
+
 	include("get-events.php");
-	
-	?>	
-		
+
+	?>
+
 		$('.image-tile').live('click',function(){
 			var photo_parts = $(this).attr('id').split('-');
 			var photo_id = photo_parts[1];
-			
+
 			$.post('set-photo-modal.php',{ id : photo_id }, function(data){
                 $('#photoModal').html(data);
-                $('#photoModal').modal('show');        
+                $('#photoModal').modal('show');
             });
-				
-			
+
+
 		});
-		
+
 		$('#submit-new-event').click(function(){
 		alert('made it');
 			var creator = $('#new_event_creator').val();
@@ -604,7 +606,7 @@ background-image: -webkit-gradient(
 			var end = $('#new_event_end_date').val();
 			var address = $('#new_event_location').val();
 			var details = $('#new_event_description').val();
-			
+
 			data = {
 				mod_person_id	: creator,
 				era_id		: era,
@@ -614,7 +616,7 @@ background-image: -webkit-gradient(
 				location	: address,
 				description	: details
 			}
-			
+
 			if ( title == "" || start == ""){
 				alert ( "Atleast a Title and a Start Date must be entered to declare an event" );
 			}
@@ -626,12 +628,12 @@ background-image: -webkit-gradient(
 					else{
 						alert( "There was an error entering your event. Please check the form for invalid characters. If the problem continues, please email no480695@gmail.com with an error report" );
 					}
-				
+
 				});
 			}
-			
+
 		});
-		
+
 	</script>
 
   </body>

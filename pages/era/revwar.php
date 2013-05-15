@@ -12,8 +12,6 @@ mysql_select_db("hmi_site")or die( mysql_error());
 
 $now = getdate();
 
-$all_events = mysql_query("SELECT id,start_date,end_date,name,description,all_day FROM event WHERE era_id = ".$ERA_ID);
-
 $get_commander = mysql_query("SELECT commander_id FROM era WHERE id = ".$ERA_ID);
 $get = mysql_fetch_row($get_commander);
 $COMMANDER_ID = $get[0];
@@ -44,14 +42,14 @@ $COMMANDER_ID = $get[0];
   </head>
 
   <body>
-  
+
   	<div id="eventModal" class="modal hide fade" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 40%;"></div>
-    
+
     <div id="photoModal" class="modal hide fade" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 30%;"></div>
-  
-  
-  
-  
+
+
+
+
   <div id="addPics" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 30%;">
 	  <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -62,21 +60,25 @@ $COMMANDER_ID = $get[0];
 			<button type="button" class="close" data-dismiss="alert">x</button>
 			<p>Multiple files can be chosen at once. Please consider the content of your images when adding them to HMIsite.com</p>
 		</div>
-		
+
 		<div class="form-horizontal">
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputEmail">Title</label>
 			<div class="controls">
 			<form name="pics_to_get" method="post" id="pics_to_get" action="/pages/process_pics.php" enctype="multipart/form-data">
 				<select id="event_select" name="event_select">
-			  <? while ($i = mysql_fetch_array($all_events, MYSQL_ASSOC)) { ?>
+			  <?
+			  $all_events2 = mysql_query("SELECT id,start_date,end_date,name,description,all_day FROM event WHERE era_id = ".$ERA_ID);
+
+
+			  while ($i = mysql_fetch_array($all_events2, MYSQL_ASSOC)) { ?>
 					<option value="<? echo $i['id']; ?>"><? echo $i['name']; ?></option>
 			  <? } ?>
 				</select>
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Photos</label>
 			<div class="controls">
@@ -93,19 +95,19 @@ $COMMANDER_ID = $get[0];
 			</div>
 		  </div>
 		</div>
-		
-		
+
+
 	  </div>
 	  <div class="modal-footer">
 		<button id="close-creator" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 	  </div>
 	</div>
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 30%;">
 	  <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -117,37 +119,37 @@ $COMMANDER_ID = $get[0];
 			<p>Enter as much or little of the information about the event as you see fit. Further information can be entered by clicking on the event in the calander.</p>
 			<p>The event may not show up right after submitting, please refresh the page and navigate to the calendar to see changes.</p>
 		</div>
-		
+
 		<div class="form-horizontal">
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputEmail">Title</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_name" placeholder="Title">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Start Date</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_start_date" placeholder="mm/dd/yyyy hh:mm">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">End Date</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_end_date" placeholder="mm/dd/yyyy hh:mm">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Address</label>
 			<div class="controls">
 			  <input type="text" style="height:30px;" id="new_event_location" placeholder="# Street Town, State Zip">
 			</div>
 		  </div>
-		  
+
 		  <div class="control-group">
 			<label class="control-label" for="inputPassword">Event Description / Information</label>
 			<div class="controls">
@@ -162,21 +164,21 @@ $COMMANDER_ID = $get[0];
 			</div>
 		  </div>
 		</div>
-		
-		
+
+
 	  </div>
 	  <div class="modal-footer">
 		<button id="close-creator" class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 	  </div>
 	</div>
-  
-  
-  
+
+
+
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          
+
           <a class="brand" href="/">Historical Military Impressions</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
@@ -203,7 +205,7 @@ $COMMANDER_ID = $get[0];
 			  <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$_SESSION['user_name']?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-				
+
 				<? if ( $_SESSION['user_id'] == $COMMANDER_ID ){ ?>
 					<li><a href="#myModal" role="button" id="submit-info" data-toggle="modal">Add Event</a></li>
 					<li><a href="#addPics" role="button" id="submit-info2" data-toggle="modal">Upload Photos</a></li>
@@ -221,8 +223,8 @@ $COMMANDER_ID = $get[0];
       </div>
     </div>
 
-	
-	
+
+
     <div class="container">
 		<div class="hero-unit" style="background-image: linear-gradient(bottom, rgb(150,85,85) 11%, rgb(196,139,139) 74%);
 background-image: -o-linear-gradient(bottom, rgb(150,85,85) 11%, rgb(196,139,139) 74%);
@@ -237,8 +239,8 @@ background-image: -webkit-gradient(
 	color-stop(0.11, rgb(150,85,85)),
 	color-stop(0.74, rgb(196,139,139))
 );-webkit-box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);
-        
-        box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);">	
+
+        box-shadow: inset 1px 1px 8px 0px rgba(1, 1, 1, 0.6);">
 			<div class="row">
 				<div class="span8">
 					<h1 style="text-shadow: 1px 2px 3px #242424;
@@ -249,7 +251,7 @@ background-image: -webkit-gradient(
 				<div class="span2"><img style="border-radius:10px;" src="/pages/era/page_images/revwarlogo.jpg" /></div>
 			</div>
 		</div>
-	
+
 		<ul class="nav nav-tabs" id="myTab">
 			<li class="active"><a href="#welcome" data-toggle="tab">Welcome</a></li>
 			<li><a href="#history" data-toggle="tab">History</a></li>
@@ -274,7 +276,7 @@ background-image: -webkit-gradient(
 					</div>
 					<div class="span4">
 						<img style="border-radius:5px;-webkit-box-shadow: inset 2px 2px 8px 0px rgba(1, 1, 1, 0.4);
-        
+
         box-shadow: inset 2px 2px 8px 0px rgba(1, 1, 1, 0.4);" src="/pages/era/page_images/troops.jpg" />
 					</div>
 				</div>
@@ -290,7 +292,7 @@ background-image: -webkit-gradient(
 			<div class="tab-pane" id="history">
 				<div class="span4">
 							<img style="border-radius:5px;-webkit-box-shadow: inset 2px 2px 8px 0px rgba(1, 1, 1, 0.4);
-			
+
 			box-shadow: inset 2px 2px 8px 0px rgba(1, 1, 1, 0.4);" src="/pages/era/page_images/gw.jpg" />
 				</div>
 				<div class="span7 well">
@@ -316,11 +318,11 @@ background-image: -webkit-gradient(
 					</div>
 					<div class="span4">
 							<img style="border-radius:5px;-webkit-box-shadow: inset 2px 2px 8px 0px rgba(1, 1, 1, 0.4);
-			
+
 			box-shadow: inset 2px 2px 8px 0px rgba(1, 1, 1, 0.4);" src="/pages/era/page_images/join1.jpg" />
 					</div>
 				</div>
-				
+
 				<div class="row" style="margin-top:50px;">
 					<div class="span3 well">
 					  <img class="lady-image" style="border-radius:8px;" src="/pages/era/page_images/join2.jpg" width="200px">
@@ -339,7 +341,7 @@ background-image: -webkit-gradient(
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="tab-pane" id="uniform">
 				<div class="row">
 					<div class="span7 well">
@@ -351,11 +353,11 @@ background-image: -webkit-gradient(
 					</div>
 					<div class="span4">
 							<img style="border-radius:5px;-webkit-box-shadow: inset 2px 2px 8px 0px rgba(1, 1, 1, 0.4);
-			
+
 			box-shadow: inset 2px 2px 8px 0px rgba(1, 1, 1, 0.4);" src="/pages/era/page_images/join2.jpg" />
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="span11 well">
 						<p><strong>18th Century black shoes</strong> - either rough or smooth side out. Either laced or buckled</p>
@@ -376,9 +378,9 @@ background-image: -webkit-gradient(
 
 		</div>
 
-		
+
     </div> <!-- /container -->
-	
+
 	<footer class="footer">
 		<div class="container">
 			<p class="pull-right"><a href="#">Back to top</a></p>
@@ -397,33 +399,33 @@ background-image: -webkit-gradient(
 	<script type="text/javascript" src="/js/date-time.js"></script>
 	<script type="text/javascript" src="/js/cal.js"></script>
     <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyBQnCHbDIwTqbI8ypbraOtMLiAFjrXfi4U&sensor=false" type="text/javascript"></script>
-    
-	
-	
+
+
+
 	<script type='text/javascript'>
-	
+
 		$("#new_event_start_date").mask("99/99/9999 99:99",{placeholder:"_"});
 		$("#new_event_end_date").mask("99/99/9999 99:99",{placeholder:"_"});
-		
+
 
 	<?
-	
+
 	include("get-events.php");
-	
-	?>	
-		
+
+	?>
+
 		$('.image-tile').live('click',function(){
 			var photo_parts = $(this).attr('id').split('-');
 			var photo_id = photo_parts[1];
-			
+
 			$.post('set-photo-modal.php',{ id : photo_id }, function(data){
                 $('#photoModal').html(data);
-                $('#photoModal').modal('show');        
+                $('#photoModal').modal('show');
             });
-				
-			
+
+
 		});
-		
+
 		$('#submit-new-event').click(function(){
 			var creator = $('#new_event_creator').val();
 			var era = $('#new_event_era').val();
@@ -432,7 +434,7 @@ background-image: -webkit-gradient(
 			var end = $('#new_event_end_date').val();
 			var address = $('#new_event_location').val();
 			var details = $('#new_event_description').val();
-			
+
 			data = {
 				mod_person_id	: creator,
 				era_id		: era,
@@ -442,7 +444,7 @@ background-image: -webkit-gradient(
 				location	: address,
 				description	: details
 			}
-			
+
 			if ( title == "" || start == ""){
 				alert ( "Atleast a Title and a Start Date must be entered to declare an event" );
 			}
@@ -454,12 +456,12 @@ background-image: -webkit-gradient(
 					else{
 						alert( "There was an error entering your event. Please check the form for invalid characters. If the problem continues, please email no480695@gmail.com with an error report" );
 					}
-				
+
 				});
 			}
-			
+
 		});
-		
+
 	</script>
 
   </body>
