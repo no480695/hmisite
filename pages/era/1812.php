@@ -12,8 +12,6 @@ mysql_select_db("hmi_site")or die( mysql_error());
 
 $now = getdate();
 
-$all_events = mysql_query("SELECT id,start_date,end_date,name,description,all_day FROM event WHERE era_id = ".$ERA_ID);
-
 $get_commander = mysql_query("SELECT commander_id FROM era WHERE id = ".$ERA_ID);
 $get = mysql_fetch_row($get_commander);
 $COMMANDER_ID = $get[0];
