@@ -1,7 +1,7 @@
 <? if ( $_SESSION['user_id'] ){
 			$movable = "true";
 		}
-		else { 
+		else {
 			$movable = "false";
 		}
 	?>
@@ -9,10 +9,10 @@
 			$('#calendar').fullCalendar({
             	 eventClick: function(calEvent, jsEvent, view) {
                     id = calEvent.id;
-                    
+
                     $.post('fetch-event.php',{ id : id }, function(data){
                     	$('#eventModal').html(data);
-                        $('#eventModal').modal('show');        
+                        $('#eventModal').modal('show');
                     });
                 },
 				header: {
@@ -30,7 +30,9 @@
 
 		$x = 0;
 		while ($i = mysql_fetch_array($all_events, MYSQL_ASSOC)) {
-			
+
+			echo('what');
+
 			$date_time = explode(" ",$i['start_date']);
 			$date = $date_time[0];
 			$time = $date_time[1];
@@ -41,7 +43,7 @@
 			$day = $date_break[1];
 			$hour = $time_break[0];
 			$minute = $time_break[1];
-			
+
 			$date_time2 = explode(" ",$i['end_date']);
 			$date2 = $date_time2[0];
 			$time2 = $date_time2[1];
@@ -58,7 +60,7 @@
 			if($minute2 == ""){
 				$minute2 = $minute;
 			}
-			
+
 			if($i['name'] == 1){
 				$allDay = "true";
 			}
@@ -150,14 +152,14 @@
 
 	?>
 
-					
+
 				]
 			});
-			
+
 			$('#cal-tab').click(function (e) {
 				e.preventDefault();
 				$(this).tab('show');
 				$('#calendar').fullCalendar('render');
 			});
-			
+
 		});
