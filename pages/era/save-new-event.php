@@ -27,13 +27,8 @@ else {
 
 function convertDate($input_date){
 
-	//08/12/2013 12:00
-	//YYYY-MM-DD HH:mm:SS
-	$parts = explode(" ",$input_date);
-	$date_parts  = explode("/",$parts[0]);
-	$time_parts = explode(":",$parts[1]);
-
-	$output_date = $date_parts[2]."-".$date_parts[0]."-".$date_parts[1]." ".$time_parts[0].":".$time_parts[1];
+	$date_parts  = explode("/",$input_date);
+	$output_date = $date_parts[2]."-".$date_parts[0]."-".$date_parts[1];
 
  return $output_date;
 }

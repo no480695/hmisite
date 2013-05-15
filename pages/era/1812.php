@@ -12,7 +12,7 @@ mysql_select_db("hmi_site")or die( mysql_error());
 
 $now = getdate();
 
- $all_events = mysql_query("SELECT id,start_date,end_date,name,description,all_day FROM event WHERE era_id = ".$ERA_ID);
+$all_events = mysql_query("SELECT id,start_date,end_date,name,description,all_day FROM event WHERE era_id = ".$ERA_ID);
 
 $get_commander = mysql_query("SELECT commander_id FROM era WHERE id = ".$ERA_ID);
 $get = mysql_fetch_row($get_commander);
@@ -334,8 +334,8 @@ background-image: -webkit-gradient(
 
 	<script type='text/javascript'>
 
-		$("#new_event_start_date").mask("99/99/9999 99:99",{placeholder:"_"});
-		$("#new_event_end_date").mask("99/99/9999 99:99",{placeholder:"_"});
+		$("#new_event_start_date").mask("99/99/9999",{placeholder:"_"});
+		$("#new_event_end_date").mask("99/99/9999",{placeholder:"_"});
 
 
 	<?
