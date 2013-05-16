@@ -15,9 +15,6 @@ $get = mysql_fetch_row($get_photo);
 $name = $get[0];
 $description = $get[1];
 $src = $get[2];
-$file = explode("/",$src);
-$end = explode(".",$file[6]);
-$toreturn = "/".$file[4]."/".$file[5]."/".$file[6];
 
 ?>
 
@@ -26,7 +23,7 @@ $toreturn = "/".$file[4]."/".$file[5]."/".$file[6];
 	<h3 id="myModalLabel"><?=$name?></h3>
 </div>
 <div class="modal-body" style="max-height:2000px;">
-   <img src="http://hmisite.com<?=$toreturn?>"  /><br />
+   <img src="<?=$src?>"  /><br />
    <p><?=$description?>
 </div>
 <div class="modal-footer">
