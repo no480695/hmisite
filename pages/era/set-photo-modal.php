@@ -22,8 +22,8 @@ $src = $get[2];
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 	<h3 id="myModalLabel"><?=$name?></h3>
 </div>
-<div class="modal-body" style="max-height:600px;">
-   <img src="<?=$src?>"  /><br />
+<div class="modal-body">
+   <img src="<?=$src?>" style="max-height:600px;" /><br />
    <p><?=$description?>
 </div>
 <div class="modal-footer">
