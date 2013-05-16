@@ -30,27 +30,32 @@ session_start();
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          
+
           <a class="brand" href="/">Historical Military Impressions</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href="/">Home</a></li>
-              <li><a href="/pages/ladies.php">Ladies of HMI</a></li>
               <li><a href="/pages/application.php">Membership Application</a></li>
-			  <li class="active"><a href="/pages/newsletter.php">Newsletter</a></li>
-			  <li><a href="/pages/directory.php">Directory</a></li>
-              <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Members <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/pages/ladies.php">Ladies of HMI</a></li>
+                  <li><a href="/pages/merit-award.php">HMI Merit Award Winners</a></li>
+                  <li><a href="/pages/newsletter.php">Newsletter</a></li>
+                  <li><a href="/pages/directory.php">Directory</a></li>
+                </ul>
+              </li>
+
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Impressions <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="/pages/era/wwii.php">World War Two</a></li>
                   <li><a href="/pages/era/wwi.php">World War One</a></li>
                   <li><a href="/pages/era/civilwar.php">Civil War</a></li>
-                  <!--<li class="divider"></li>
-                  <li class="nav-header">Nav header</li>-->
                   <li><a href="/pages/era/1812.php">War of 1812</a></li>
                   <li><a href="/pages/era/revwar.php">Rev War</a></li>
-				  <li><a href="/pages/era/french&indian.php">French and Indian War</a></li>
+                  <li><a href="/pages/era/french&indian.php">French and Indian War</a></li>
                 </ul>
               </li>
 			  <? if ( $_SESSION['user_name'] ){ ?>
@@ -71,7 +76,7 @@ session_start();
     </div>
 
     <div class="container">
-	<h3>Copy and paste the following into an email, and attach a copy of your unit's insurance form. Then email the form to hmisecretary@comcast.net</h3> 
+	<h3>Copy and paste the following into an email, and attach a copy of your unit's insurance form. Then email the form to hmisecretary@comcast.net</h3>
 	<div class="well">
 		<h4 style="font-size: 24px;color: rgb(130, 130, 130);">Unit Name:</h4>
 		<h4 style="font-size: 24px;color: rgb(130, 130, 130);">Unit Description:</h4>

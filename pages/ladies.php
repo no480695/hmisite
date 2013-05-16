@@ -30,27 +30,32 @@ session_start();
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          
+
           <a class="brand" href="/">Historical Military Impressions</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li><a href="/">Home</a></li>
-              <li class="active"><a href="/pages/ladies.php">Ladies of HMI</a></li>
               <li><a href="/pages/application.php">Membership Application</a></li>
-			  <li><a href="/pages/newsletter.php">Newsletter</a></li>
-			  <li><a href="/pages/directory.php">Directory</a></li>
-              <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Members <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li class="active"><a href="/pages/ladies.php">Ladies of HMI</a></li>
+                  <li><a href="/pages/merit-award.php">HMI Merit Award Winners</a></li>
+                  <li><a href="/pages/newsletter.php">Newsletter</a></li>
+                  <li><a href="/pages/directory.php">Directory</a></li>
+                </ul>
+              </li>
+
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Impressions <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="/pages/era/wwii.php">World War Two</a></li>
                   <li><a href="/pages/era/wwi.php">World War One</a></li>
                   <li><a href="/pages/era/civilwar.php">Civil War</a></li>
-                  <!--<li class="divider"></li>
-                  <li class="nav-header">Nav header</li>-->
                   <li><a href="/pages/era/1812.php">War of 1812</a></li>
                   <li><a href="/pages/era/revwar.php">Rev War</a></li>
-				  <li><a href="/pages/era/french&indian.php">French and Indian War</a></li>
+                  <li><a href="/pages/era/french&indian.php">French and Indian War</a></li>
                 </ul>
               </li>
 			  <? if ( $_SESSION['user_name'] ){ ?>
@@ -70,10 +75,10 @@ session_start();
       </div>
     </div>
 
-	
-	
+
+
     <div class="container">
-		
+
 		<div class="row" style="margin-top:50px;">
             <div class="span4">
               <img class="lady-image" src="/images/ladies/AL__DIANE williamsburg.jpg" width="200px">
@@ -148,9 +153,9 @@ session_start();
               <h2>Olga Leake</h2>
             </div>
         </div>
-		
+
     </div> <!-- /container -->
-	
+
 	<footer class="footer">
 		<div class="container">
 			<p class="pull-right"><a href="#">Back to top</a></p>
