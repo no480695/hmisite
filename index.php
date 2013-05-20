@@ -106,12 +106,11 @@ mysql_select_db("hmi_site")or die( mysql_error());
 			  <? } else { ?>
 			  <li><a href='/login.php'>Sign In</a></li>
 			  <? } ?>
-            <li><a href='https://www.facebook.com/pages/Historical-Military-Impressions/175875785785507'><img src="/images/facebook-icon.gif" style="width:20px;" /></a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!-- /.navbar-inner -->
       </div><!-- /.navbar -->
-
+      <a href='https://www.facebook.com/pages/Historical-Military-Impressions/175875785785507'><img src="/images/facebook-icon.gif" style="width:20px;" /></a></li>
     </div><!-- /.container -->
 
 
