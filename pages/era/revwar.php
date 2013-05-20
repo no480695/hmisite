@@ -409,8 +409,8 @@ background-image: -webkit-gradient(
 
 	<script type='text/javascript'>
 
-		$("#new_event_start_date").mask("99/99/9999 99:99",{placeholder:"_"});
-		$("#new_event_end_date").mask("99/99/9999 99:99",{placeholder:"_"});
+		$("#new_event_start_date").mask("99/99/9999",{placeholder:"_"});
+		$("#new_event_end_date").mask("99/99/9999",{placeholder:"_"});
 
 
 	<?
