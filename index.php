@@ -108,9 +108,10 @@ mysql_select_db("hmi_site")or die( mysql_error());
 			  <? } ?>
             </ul>
           </div><!--/.nav-collapse -->
+                <a href='https://www.facebook.com/pages/Historical-Military-Impressions/175875785785507'><img src="/images/facebook-icon.gif" style="width:20px;" /></a></li>
+
         </div><!-- /.navbar-inner -->
       </div><!-- /.navbar -->
-      <a href='https://www.facebook.com/pages/Historical-Military-Impressions/175875785785507'><img src="/images/facebook-icon.gif" style="width:20px;" /></a></li>
     </div><!-- /.container -->
 
 
