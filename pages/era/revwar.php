@@ -330,7 +330,7 @@ background-image: -webkit-gradient(
 
 				<div class="row" style="margin-top:50px;">
 					<div class="span3 well">
-					  <img class="lady-image" style="border-radius:8px;" src="/pages/era/page_images/join2.jpg" width="200px">
+					  <img class="lady-image" style="border-radius:8px;" src="/pages/era/page_images/Captainphoto.jpg" width="200px">
 					  <h2>Captain Dave Hospador</h2>
 					  <p>dchospador@comcast.net</p>
 					</div>
